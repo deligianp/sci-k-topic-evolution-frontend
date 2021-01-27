@@ -1,4 +1,4 @@
-import API from './api'
+import API from './api';
 import TopicTermsCard from "./TopicTermsCard";
 import Header from "./Header";
 import {Container, Row} from "reactstrap";
