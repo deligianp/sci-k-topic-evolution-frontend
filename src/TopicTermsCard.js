@@ -1,6 +1,7 @@
 import React from "react";
 import {Card, CardHeader, Button, CardBody, Row, Col} from "reactstrap";
 import TopicTermsCloud from "./TopicTermsCloud";
+import {Link} from "react-router-dom";
 
 const TopicTermsCard = (props) => {
 
@@ -10,7 +11,10 @@ const TopicTermsCard = (props) => {
                 <CardHeader>
                     <Row className={'justify-content-between'}>
                         <h3>{`Topic ${props.topic}`}</h3>
-                        <Button>Show topic</Button>
+                        <Link
+                            className={'btn btn-dark react-router-link'}
+                            to={`/show?model=${props.model}&topic=${props.topic}`}
+                        >Show topic</Link>
                     </Row>
                 </CardHeader>
                 <CardBody className={'py-1'}>

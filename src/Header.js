@@ -13,10 +13,10 @@ const Header = () => {
             <Collapse isOpen={isOpen} navbar>
                 <Nav className="mr-auto" navbar>
                     <NavItem>
-                        <Link className={'nav-link'} to="/"><NavLink>Home</NavLink></Link>
+                        <Link className={'nav-link'} to="/">Home</Link>
                     </NavItem>
                     <NavItem>
-                        <Link className={'nav-link'} to="/analysis/"><NavLink>Analyze Text</NavLink></Link>
+                        <Link className={'nav-link'} to="/analysis/">Analyze Text</Link>
                     </NavItem>
                 </Nav>
             </Collapse>
