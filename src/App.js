@@ -1,29 +1,23 @@
 import './App.css';
 import React from "react";
 import Home from "./Home";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import TextAnalysis from "./TextAnalysis";
+import Topic from "./Topic";
+import Main from './Main'
 
-class App extends React.Component {
-    render() {
-        return (
-            <Router>
+const App = () => {
+    return (
+        <Router>
+            <Main>
                 <Switch>
-                    <Route path="/analysis">
-                        <TextAnalysis/>
-                    </Route>
-                    <Route path="/">
-                        <Home/>
-                    </Route>
+                    <Route path="/analysis" component={TextAnalysis}/>
+                    <Route path="/show" component={Topic}/>
+                    <Route path="/" component={Home}/>
                 </Switch>
-            </Router>
-        )
-    }
+            </Main>
+        </Router>
+    )
 }
 
 export default App;

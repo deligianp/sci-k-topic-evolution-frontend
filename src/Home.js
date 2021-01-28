@@ -36,9 +36,10 @@ class Home extends React.Component {
     }
 
     loadSelectedModelTopics() {
+        const queriedModel = this.state.selectedModel;
         API.get('model-topics', {
             params: {
-                name: this.state.selectedModel
+                name: queriedModel
             }
         })
             .then(response => {
@@ -46,6 +47,7 @@ class Home extends React.Component {
                 this.setState({
                     modelTopics: Object.keys(topics).map(
                         topicIdx => <TopicTermsCard
+                            model={queriedModel}
                             topic={topicIdx}
                             termDistributions={topics[topicIdx].map((ttd, idx) => {
                                 return {value: ttd.term, count: ttd.value, key: 'key-' + idx}
@@ -78,23 +80,20 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div>
-                <Header/>
-                <Container fluid={true}>
-                    <Row className={'mb-2 justify-content-center'}>
-                        {this.state.models &&
-                        <TopicModelForm
-                            models={this.state.models}
-                            current={this.state.selectedModel}
-                            handleSelection={this.handleSelection.bind(this)}/>
-                        }
-                    </Row>
-                    <hr className={'mb-5'}/>
-                    <Row>
-                        {this.state.modelTopics}
-                    </Row>
-                </Container>
-            </div>
+            <Container fluid={true}>
+                <Row className={'mb-2 justify-content-center'}>
+                    {this.state.models &&
+                    <TopicModelForm
+                        models={this.state.models}
+                        current={this.state.selectedModel}
+                        handleSelection={this.handleSelection.bind(this)}/>
+                    }
+                </Row>
+                <hr className={'mb-5'}/>
+                <Row>
+                    {this.state.modelTopics}
+                </Row>
+            </Container>
         );
     }
 }
