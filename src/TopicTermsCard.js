@@ -17,7 +17,7 @@ const TopicTermsCard = (props) => {
                         >Show topic</Link>
                     </Row>
                 </CardHeader>
-                <CardBody className={'py-1'}>
+                <CardBody className={'py-1 row align-items-center'}>
                     <TopicTermsCloud termDistributions={props.termDistributions}/>
                 </CardBody>
             </Card>
