@@ -2,9 +2,6 @@ import React, {useEffect, useState, useRef} from "react";
 import {Line} from 'react-chartjs-2';
 import {Row, Col} from 'reactstrap';
 import TopicTermsCloud from "./TopicTermsCloud";
-import {TwoLevelTree} from "./twoleveltree";
-import {useResizeDetector} from 'react-resize-detector';
-import TopicEvolutionTree from "./TopicEvolutionTree";
 import ResponsiveTopicEvolutionTree from "./TopicEvolutionTree";
 import API from './api'
 

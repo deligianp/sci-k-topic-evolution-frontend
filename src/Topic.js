@@ -44,37 +44,10 @@ class Topic extends React.Component {
                     <Container>
                         {this.state.topicTerms &&
                         <div>
-                            <Nav tabs>
-                                <NavItem>
-                                    <NavLink
-                                        className={''+this.state.activeTab==='topic-terms-table'?'active':''}
-                                        onClick={() => {
-                                            this.setState({activeTab: 'topic-terms-table'})
-                                        }}
-                                    >Top-50 Terms Table
-                                    </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink
-                                        className={''+this.state.activeTab==='topic-visualizations'?'active':''}
-                                        onClick={() => {
-                                            this.setState({activeTab: 'topic-visualizations'})
-                                        }}
-                                    >Visualizations
-                                    </NavLink>
-                                </NavItem>
-                            </Nav>
-                            <TabContent className={'mt-4'} activeTab={this.state.activeTab}>
-                                <TabPane tabId="topic-terms-table">
-                                    <TopicTable topicTerms={this.state.topicTerms}/>
-                                </TabPane>
-                                <TabPane tabId="topic-visualizations">
-                                    <TopicVisualizations
-                                        topicTerms={this.state.topicTerms}
-                                        modelName={this.modelName}
-                                        topic={this.topic}/>
-                                </TabPane>
-                            </TabContent>
+                            <TopicVisualizations
+                                topicTerms={this.state.topicTerms}
+                                modelName={this.modelName}
+                                topic={this.topic}/>
                         </div>
                         }
                     </Container>
