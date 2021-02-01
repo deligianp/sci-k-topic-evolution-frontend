@@ -69,7 +69,10 @@ class Topic extends React.Component {
                                     <TopicTable topicTerms={this.state.topicTerms}/>
                                 </TabPane>
                                 <TabPane tabId="topic-visualizations">
-                                    <TopicVisualizations topicTerms={this.state.topicTerms}/>
+                                    <TopicVisualizations
+                                        topicTerms={this.state.topicTerms}
+                                        modelName={this.modelName}
+                                        topic={this.topic}/>
                                 </TabPane>
                             </TabContent>
                         </div>
