@@ -11,7 +11,7 @@ const TopicModelForm = (props) => {
         <Col xs={12} sm={8} md={6} className={'my-4 text-left'}>
             <Form>
                 <FormGroup>
-                    <Label for="modelSelect"><h4>Select Model</h4></Label>
+                    <Label for="modelSelect"><h4>Select Time Period</h4></Label>
                     <Input type="select" name="select" id="modelSelect" onChange={props.handleSelection}>
                         {models}
                     </Input>
@@ -22,3 +22,4 @@ const TopicModelForm = (props) => {
 };
 
 export default TopicModelForm;
+

@@ -84,7 +84,7 @@ const TopicVisualizations = props => {
                                 <div>
                                     <Row>
                                         <Col xs={12} className={'my-3 text-center'}>
-                                            <h3>Topic evolution tree</h3>
+                                            <h3>Topic evolution graph</h3>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -105,3 +105,4 @@ const TopicVisualizations = props => {
 }
 
 export default TopicVisualizations;
+
