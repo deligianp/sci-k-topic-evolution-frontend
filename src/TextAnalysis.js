@@ -12,7 +12,8 @@ class TextAnalysis extends React.Component {
         loading: false,
         topics: null,
         models: [],
-        selectedModel: null
+        selectedModel: null,
+        visualizedModel: null
     }
 
     handleTextChange(text) {
@@ -25,9 +26,10 @@ class TextAnalysis extends React.Component {
         this.setState({
             loading: true
         }, () => {
+            const requestedModel = this.state.selectedModel;
             API.post('analyze-text', {
                 text: this.state.text,
-                model_name: this.state.selectedModel
+                model_name: requestedModel
             })
                 .then(response => {
                     const topics = [[], []]
@@ -37,7 +39,8 @@ class TextAnalysis extends React.Component {
                     })
                     this.setState({
                         loading: false,
-                        topics: topics
+                        topics: topics,
+                        visualizedModel: requestedModel
                     })
                 })
                 .catch()
@@ -135,6 +138,15 @@ class TextAnalysis extends React.Component {
                                                 return data.labels[index] + ': ' + data.datasets[0].data[index] + "%";
                                             }
                                         }
+                                    }
+                                }}
+                                getElementAtEvent={ e=> {
+                                    const model = this.state.visualizedModel;
+                                    const topicIdx = e[0]._index
+                                    if (topicIdx >= 0 && topicIdx<3) {
+                                        const topic = this.state.topics[0][topicIdx];
+                                        const win = window.open(`/show?model=${model}&topic=${topic}`, '_blank');
+                                        win.focus();
                                     }
                                 }}
                             />
