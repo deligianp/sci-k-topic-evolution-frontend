@@ -16,8 +16,8 @@ const TopicTermsCard = (props) => {
                     <Row className={'justify-content-between'}>
                         <Col xs={8}>
                             <h3>{`Topic ${props.topic}`} {props.isNovel &&
-                            <span title='foo' className="badge badge-pill badge-warning badge-sidenote"><FontAwesomeIcon
-                                icon={faBahai}/>Novel topic</span>}</h3>
+                            <span title='New topic' className="badge badge-pill badge-warning badge-sidenote"><FontAwesomeIcon
+                                icon={faBahai}/>New topic</span>}</h3>
                         </Col>
                         <Col xs={4}>
                             <Link

@@ -36,6 +36,11 @@ const TopicVisualizations = props => {
 
     return (
         <div>
+	    <Row>
+                <Col xs={12} className={'text-center'}>
+                    <h2>{`Topic ${props.topic}`}</h2>
+                </Col>
+	    </Row>
             <Row className={'align-items-stretch'}>
                 <Col xs={12} md={6}>
                     <Row>
