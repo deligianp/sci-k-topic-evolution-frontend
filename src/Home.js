@@ -11,9 +11,10 @@ class Home extends React.Component {
         selectedModel: null,
         models: [],
         modelTopics: [],
+        novelTopics: {},
         loadingTopics: false
     };
-    modelSelectionIdx=0;
+    modelSelectionIdx = 0;
 
     loadModels() {
         API.get('models')
@@ -22,8 +23,9 @@ class Home extends React.Component {
                     this.setState({
                         models: response.data,
                         selectedModel: response.data[0].name,
-                        modelTopics: []
-                    }, this.loadSelectedModelTopics.bind(this));
+                        modelTopics: [],
+                        novelTopics: {}
+                    }, this.loadNovelTopics);
                 } else {
                     this.setState({
                         models: []
@@ -36,10 +38,37 @@ class Home extends React.Component {
             });
     }
 
+    loadNovelTopics() {
+        API.get('novel-topics', {
+            params: {
+                name: this.state.selectedModel
+            }
+        })
+            .then(response => {
+                if (response.data) {
+                    const topicIndices = {};
+                    response.data.novelTopics.forEach(topic => {
+                        topicIndices[topic.toString()] = topic;
+                    });
+                    this.setState({
+                        novelTopics: topicIndices
+                    }, this.loadSelectedModelTopics);
+                } else {
+                    this.setState({
+                        novelTopics: {}
+                    }, this.loadSelectedModelTopics)
+                }
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            });
+    }
+
     loadSelectedModelTopics(offset = 0) {
         const queriedModel = this.state.selectedModel;
         const limit = 50;
-        const modelSelectionIdx=this.modelSelectionIdx;
+        const modelSelectionIdx = this.modelSelectionIdx;
         API.get('model-topics', {
             params: {
                 name: queriedModel,
@@ -60,6 +89,7 @@ class Home extends React.Component {
                                 termDistributions={topics[topicIdx].map((ttd, idx) => {
                                     return {value: ttd.term, count: ttd.value, key: 'key-' + idx}
                                 })}
+                                isNovel={topicIdx.toString() in this.state.novelTopics}
                             />
                         ))
                     }, () => {
@@ -112,11 +142,11 @@ class Home extends React.Component {
 
                 </Row>
                 {this.state.modelTopics.length > 0 && this.state.loadingTopics &&
-                    <Row>
-                        <Col className={'text-center'}>
-                            <InformativeLoadingSpinner active={true} color={'dark'} message={'Loading topics'}/>
-                        </Col>
-                    </Row>
+                <Row>
+                    <Col className={'text-center'}>
+                        <InformativeLoadingSpinner active={true} color={'dark'} message={'Loading topics'}/>
+                    </Col>
+                </Row>
                 }
             </Container>
         );
