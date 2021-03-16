@@ -46,6 +46,15 @@ class TopicEvolutionTree extends React.Component {
                 return "Loading...";
             }
         }
+        this.twoLevelTree.nodeTooltipHeading = node => {
+            const tooltipLink = document.createElement('a')
+            tooltipLink.href = `/show?model=${node.modelName}&topic=${node.topic}`;
+            tooltipLink.innerText = this.twoLevelTree.nodeLabel(node);
+            tooltipLink.target = '_blank';
+            tooltipLink.classList = ['text-white']
+            tooltipLink.className = 'text-white';
+            return tooltipLink;
+        }
     }
 
     render() {

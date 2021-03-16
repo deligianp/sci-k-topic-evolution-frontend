@@ -167,12 +167,14 @@ export class TwoLevelTree {
 
     linkLabel = link => link.hasOwnProperty("label") ? link.label : null;
 
+    nodeTooltipHeading = node => node.hasOwnProperty("label") ? node.label : node.name;
+
     nodeTooltip = function (node) {
         let tooltip = node.depth == 0 ? this.tooltip0 : this.tooltip1;
         tooltip.resetContent();
         let heading = this.nodeLabel(node);
         let text = this.nodeText(node);
-        tooltip.setHeading(heading);
+        tooltip.setHeading(this.nodeTooltipHeading(node));
         tooltip.setText(text);
         tooltip.bindNode(node);
         return tooltip;
